@@ -1,6 +1,7 @@
 import streamlit as st
 import base64
 
+# Display some header text
 """
 # Upload and Download
 
@@ -9,7 +10,7 @@ functionality. Note: Your file is not stored anywhere other than in
 the Streamlit server's memory.
 """
 
-# Source Code Starts Here 
+# Source code starts below
 #>
 
 st.markdown("""
@@ -22,9 +23,7 @@ afterwards.
 my_file = st.file_uploader("Upload any file.")
 if my_file == None:
     st.stop()
-st.write(dir(my_file), my_file.name)
 
-# contents = .encode()
 b64 = base64.b64encode(my_file.read()).decode()
 
 st.markdown(f"""
@@ -36,3 +35,13 @@ Click
 </a>
 to download `{my_file.name}`.
 """, unsafe_allow_html=True)
+
+#<
+# Source code ends above
+
+# Allow the user to browse the source code.
+with st.beta_expander("See source code"):
+    source = open(__file__).read()
+    start_sentinal = source.find('#>')
+    end_sentinal = source.find('#<')
+    st.code(source[start_sentinal + 2 : end_sentinal])
