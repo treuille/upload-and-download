@@ -10,6 +10,13 @@ functionality. Note: Your file is not stored anywhere other than in
 the Streamlit server's memory.
 """
 
+# Allow the user to browse the source code.
+with st.beta_expander("See source code"):
+    source = open(__file__).read()
+    start_sentinal = source.find('#>')
+    end_sentinal = source.find('#<')
+    st.code(source[start_sentinal + 2 : end_sentinal])
+
 # Source code starts below
 #>
 
@@ -39,9 +46,3 @@ to download `{my_file.name}`.
 #<
 # Source code ends above
 
-# Allow the user to browse the source code.
-with st.beta_expander("See source code"):
-    source = open(__file__).read()
-    start_sentinal = source.find('#>')
-    end_sentinal = source.find('#<')
-    st.code(source[start_sentinal + 2 : end_sentinal])
